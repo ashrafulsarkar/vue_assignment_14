@@ -8,9 +8,6 @@ const authStore = useAuthStore();
 import useCartStore from '../stores/cartStore';
 const cartStore = useCartStore();
 
-import wishList from '../stores/wishList';
-const wishListStore = wishList();
-
 const isDropdownOpen = ref(false);
 function toggleDropdown() {
     isDropdownOpen.value = !isDropdownOpen.value;
