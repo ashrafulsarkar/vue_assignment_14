@@ -59,11 +59,14 @@ const useCartStore = defineStore('cart', () => {
         toast.success("Product remove to cart!");
     }
 
-    // async function empty(){
-    //     items = {};
-    //     saveCartToLocalStorage();
-    //     toast.success("Cart Cleared!");
-    // }
+    async function empty() {
+        for (const key in items) {
+            if (items.hasOwnProperty(key)) {
+              delete items[key];
+            }
+        }
+        saveCartToLocalStorage();
+    }
     
     function saveCartToLocalStorage(){
         localStorage.setItem('cart', JSON.stringify(items))
@@ -72,7 +75,7 @@ const useCartStore = defineStore('cart', () => {
         items = JSON.parse(localStorage.getItem('cart')) || {}
     }
 
-    return { items, totalItems, totalPrice, add, getCartFromLocalStorage, removeItem, subItem }
+    return { items, totalItems, totalPrice, add, empty, getCartFromLocalStorage, removeItem, subItem }
 })
 
 export default useCartStore;
